@@ -21,4 +21,9 @@ class Trajet extends Model
         'numPermis',
         'immatriculation',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

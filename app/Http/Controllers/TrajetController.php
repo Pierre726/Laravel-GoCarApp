@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class TrajetController extends Controller
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function publier(Request $request)
     {
         $trajet=Trajet::create([

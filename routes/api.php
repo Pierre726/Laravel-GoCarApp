@@ -25,6 +25,14 @@ Route::middleware('auth:sanctum')->get("/me", function (Request $request) {
 Route::post("/register",[AuthController::class,'register']);
 Route::post("/login", [Authcontroller::class,'login']); 
 
+Route::middleware('auth:sanctum')->group(function(){
+Route::get("/users",[AuthController::class,'all']);
+Route::get("/users/{id}", [Authcontroller::class,'getOne']);
+Route::put("/users/{id}", [Authcontroller::class,'edit']);
+Route::delete("/users/{id}", [Authcontroller::class,'delete']);
+});
+
+
 Route::get("trajet/search", [TrajetController::class, 'searchTrajets']);
 Route::middleware('auth:sanctum')->post("/publier", [TrajetController::class,'publier']);
 
