@@ -26,4 +26,9 @@ class Trajet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

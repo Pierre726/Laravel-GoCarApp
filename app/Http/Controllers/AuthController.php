@@ -75,7 +75,7 @@ class AuthController extends Controller
         return response()->json([ 'data' => $users ]);
     }
     
-    public function getOne(int $userId)
+    public function getUser(int $userId)
     {
         return response()->json([ 'data' => User::find($userId)->first() ]);
     }
