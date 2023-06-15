@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaimentController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TrajetController;
 use Illuminate\Support\Facades\Auth;
@@ -41,4 +42,15 @@ Route::put("/trajet/{id}", [TrajetController::class,'edit']);
 Route::delete("/trajet/{id}", [Trajetcontroller::class,'delete']);
 });
 
-Route::middleware('auth:sanctum')->post("/reserver", [ReservationController::class,'reserver']);
+Route::middleware('auth:sanctum')->group(function(){
+Route::post("/reserver", [ReservationController::class,'reserver']);
+Route::get("/reservations",[ReservationController::class,'all']);
+Route::get("/reservation/{id}", [ReservationController::class,'getReservation']);
+// Route::put("/reservation/{id}", [ReservationController::class,'edit']);
+// Route::delete("/reservation/{id}", [Reservationcontroller::class,'delete']);
+});
+
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post("/transaction", [PaimentController::class,'transaction']);
+});

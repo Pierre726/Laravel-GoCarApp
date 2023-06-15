@@ -68,7 +68,7 @@ class TrajetController extends Controller
     
     public function getTrajet(int $trajetId)
     {
-        return response()->json([ 'data' => Trajet::find($trajetId)->first() ]);
+        return response()->json([ 'data' => Trajet::find($trajetId)]);
     }
     
     public function edit(UpdateTrajetRequest $request, int $trajetId)
