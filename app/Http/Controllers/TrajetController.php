@@ -27,7 +27,9 @@ class TrajetController extends Controller
             'immatriculation' =>$request->immatriculation,
         ]);
 
-        return response()->json(["message"=>"Le trajet a été publié avec success"]);
+        return response()->json(["message"=>["succes"=>"Votre trajet a été publié avec succès!!"], 
+                            "trajet"=>$trajet
+        ]);
     }
 
     public function searchTrajets(Request $request)
@@ -96,7 +98,17 @@ class TrajetController extends Controller
         //$raison=$request->input('raison');
         $trajet->delete();
         return response()->json(["message"=>"Le trajet a été supprimé avec succès."]);
-     }
- 
+    }
+
+    public function getUserTrajets(int $user_id)
+    {
+        $user_id = Trajet::find($user_id);
+
+       
+           $user_id=Trajet::where($user_id == Auth::user()->id)->get();
+
+        return response()->json($user_id);
+    }
+
 }
     

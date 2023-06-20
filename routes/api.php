@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatRoomController;
 use App\Http\Controllers\PaimentController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TrajetController;
@@ -37,6 +39,7 @@ Route::get("trajet/search", [TrajetController::class, 'searchTrajets']);
 Route::middleware('auth:sanctum')->group(function(){
 Route::post("/publier", [TrajetController::class,'publier']);
 Route::get("/trajets",[TrajetController::class,'all']);
+// Route::get("user/trajets/{id}", [TrajetController::class, 'getUserTrajets']);
 Route::get("/trajet/{id}", [TrajetController::class,'getTrajet']);
 Route::put("/trajet/{id}", [TrajetController::class,'edit']);
 Route::delete("/trajet/{id}", [Trajetcontroller::class,'delete']);
@@ -53,4 +56,13 @@ Route::get("/reservation/{id}", [ReservationController::class,'getReservation'])
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post("/transaction", [PaimentController::class,'transaction']);
+});
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post("/chatRoom", [ChatRoomController::class,'chatRoom']);
+});
+
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post("/chat", [ChatController::class,'chatMessage']);
 });
